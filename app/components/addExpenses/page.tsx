@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react'
 import { Input } from '@/components/ui/input'
 import { Label } from "@/components/ui/label"
@@ -31,7 +33,7 @@ export default function NewExpenses() {
                 <CardContent>
                   <form action="" className='flex flex-col gap-5'> 
 
-                   <div className='flex flex-col sm:flex-row gap-5 sm:justify-between'>
+                   <div className='flex flex-col gap-5 sm:flex-row sm:justify-between'>
                      {/* Expenses name */}
                      <div className='flex flex-col gap-3 sm:w-[49%]'>
                       <Label htmlFor='expenses-name'>Expenses Name</Label>

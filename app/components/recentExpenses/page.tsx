@@ -5,6 +5,8 @@ export default function RecentExpenses() {
     <>
         <section>
         <h1 className='text-2xl font-bold'>Recent Expenses</h1>
+
+        
         </section>
     </>
   )
