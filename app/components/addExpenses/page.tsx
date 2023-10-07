@@ -11,10 +11,16 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
+interface Expenses {
+  expenseName: any, 
+  expenseAmount: any, 
+  expenseCategory:any, 
+  handleExpenses: any, 
+  budgetArray:any
+}
 
 
-
-export default function NewExpenses({expenseName, expenseAmount, expenseCategory, handleExpenses, budgetArray}: {expenseName: any, expenseAmount: any, expenseCategory:any, handleExpenses: any, budgetArray:any}) {
+export default function NewExpenses({expenseName, expenseAmount, expenseCategory, handleExpenses, budgetArray} : Expenses){
   return (
     <>
         <section>
@@ -59,3 +65,5 @@ export default function NewExpenses({expenseName, expenseAmount, expenseCategory
     </>
   )
 }
+
+
