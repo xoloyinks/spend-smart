@@ -9,7 +9,6 @@ const tryToast = () => toast("Button clicked mumu!");
 
 
 export default function ExistingBudget({budgetArray} : {budgetArray: any}) {
-    const [amount, setAmount] = useState<any | null>();
 
     function formatCurrency(number : number, locale = 'en-US', currency = 'USD') {
         return new Intl.NumberFormat(locale, {
@@ -30,19 +29,24 @@ export default function ExistingBudget({budgetArray} : {budgetArray: any}) {
            <div className='gap-5 sm:flex-wrap sm:flex'>
                 {
                     budgetArray.map((datum : any, i : any) => {
+                        let budgeted = formatCurrency(datum.budgetAmount);
+                        let spent = formatCurrency(datum.amountSpent);
+                        let remaining = datum.budgetAmount - datum.amountSpent;
+
+                        let percentage = (100 * datum.amountSpent)/datum.budgetAmount;
                         return(
                             <>
                                 <div key={i}  className='rounded-xl my-3 text-sm py-3 px-5 shadow-sm shadow-slate-500 bordedr-4 border-blue-5d00/50 backdrop-blur-lg bg-blue-950/25 sm:w-[32%] '>
                                     <div className='flex justify-between font-semibold '>
                                         <span className='text-md'>{datum.budgetName}</span>
-                                        <span>{formatCurrency(datum.budgetAmount)} Budgeted</span>
+                                        <span>{budgeted} Budgeted</span>
                                     </div>
                                     <div className='py-3'>
-                                        <Progress value={33} />
+                                        <Progress value={percentage} />
                                     </div>
                                     <div className='flex justify-between text-gray-400'>
-                                        <span>$20 spent</span>
-                                        <span>$11,980 remaining</span>
+                                        <span>{spent} spent</span>
+                                        <span>{formatCurrency(remaining)} remaining</span>
                                     </div>
                                     <div className='mt-4'>
                                         <Button onClick={tryToast} className='flex mx-auto'>View Details</Button>

@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from 'react';
 import { useTheme } from 'next-themes';
 import {MdDarkMode, MdLightMode} from "react-icons/md"
 import {FaPiggyBank} from "react-icons/fa"
-import Image from 'next/image'
 import CreatBudget from './components/createBudget/page';
 import NewExpenses from './components/addExpenses/page';
 import ExistingBudget from './components/exisitingBudgets/page';
@@ -38,26 +37,44 @@ const ThemeSwitcher = () => {
 
 export default function Home() {
   const [budget, setBudget] = useState<any | null>("");
-  const [expense, setExpense] = useState<any | null>(null);
+  const [expense, setExpense] = useState<any | null>([]);
+  const [amountSpent, setAmountSpent] =  useState<any | null>(0);
+  const [budgetId, setBudgetId] = useState<any | null>(0);
   const [budgetArray, setBudgetArray] = useState<any | null>([]);
   const [expensesArray, setExpensesArray] = useState<any | null>([]);
   const budgetName = useRef<HTMLInputElement>(null);
   const budgetAmount = useRef<HTMLInputElement>(null);
 
   const expenseName = useRef<HTMLInputElement>(null);
-  const expenseAmount = useRef<HTMLInputElement>(null);
+  const expenseAmount = useRef<any | null>(null);
   const expenseCategory = useRef <HTMLInputElement>(null);
+
 
   const handleBudget = (e : any) => {
     e.preventDefault();
-    setBudgetArray([...budgetArray,{ budgetName: budgetName.current?.value, budgetAmount: budgetAmount.current?.value }]);
+    setBudgetId(budgetId + 1);
+    setBudgetArray([...budgetArray,{ budgetName: budgetName.current?.value, budgetAmount: budgetAmount.current?.value, budgetId: budgetId, amountSpent: amountSpent, }]);
+    setExpense([...expense, 0]);
   }
 
   const handleExpenses = (e: any) => {
     const expenseTimeStamp = new Date();
     const expenseTime = expenseTimeStamp.toDateString();
-    console.log(expenseTime)
     e.preventDefault();
+
+    budgetArray.map((datum:any) => {
+      if(datum.budgetName === expenseCategory.current?.value){
+        let id = datum.budgetId;
+        datum.amountSpent = expense[id] + parseInt(expenseAmount.current?.value);
+
+        const expenses = [...expense];
+        expenses[id] = datum.amountSpent;
+        setExpense(expenses);
+        
+      }
+    })
+
+
     setExpensesArray([...expensesArray, { expenseName: expenseName.current?.value, expenseAmount: expenseAmount.current?.value, expenseCategory: expenseCategory.current?.value, expenseTime: expenseTime }]);
   }
   return (
@@ -82,7 +99,6 @@ export default function Home() {
               
               {/* Create and Add Budget */}
               <div className='flex flex-col gap-5 mt-32 sm:justify-between sm:flex sm:flex-row'>
-
                 <div className='w-full sm:w-[45%]'>
                   <CreatBudget handleBudget={handleBudget} budgetName={budgetName} budgetAmount={budgetAmount} />
                 </div>

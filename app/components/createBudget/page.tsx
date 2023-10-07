@@ -37,7 +37,7 @@ export default function CreatBudget({handleBudget, budgetName, budgetAmount} : {
                     {/* Budget amount */}
                     <div  className='flex flex-col gap-3'>
                       <Label htmlFor='budget-name'>Amount</Label>
-                      <Input ref={budgetAmount} placeholder='Ignor currency sign. Dollar sign is used automatically' type='number' id='budget-amount' />
+                      <Input ref={budgetAmount} placeholder='-----' type='number' id='budget-amount' />
                     </div>
 
                     <Button className='w-fit dark:bg-green-700 dark:text-white'>Create Budget</Button>

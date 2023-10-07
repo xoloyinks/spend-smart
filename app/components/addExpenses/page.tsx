@@ -11,16 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
-interface Expenses {
-  expenseName: any, 
-  expenseAmount: any, 
-  expenseCategory:any, 
-  handleExpenses: any, 
-  budgetArray:any
-}
-
-
-function NewExpenses({expenseName, expenseAmount, expenseCategory, handleExpenses, budgetArray} : Expenses){
+export default function NewExpenses({expenseName, expenseAmount, expenseCategory, handleExpenses, budgetArray}: {expenseName: any, expenseAmount: any, expenseCategory:any, handleExpenses: any, budgetArray:any}) {
   return (
     <>
         <section>
@@ -41,16 +32,16 @@ function NewExpenses({expenseName, expenseAmount, expenseCategory, handleExpense
                     {/* Expenses amount */}
                     <div  className='flex flex-col gap-3 sm:w-[49%]'>
                       <Label htmlFor='expenses-amount'>Amount</Label>
-                      <Input ref={expenseAmount} placeholder='$30' type='number' id='expenses-amount' />
+                      <Input ref={expenseAmount} placeholder='-----' type='number' id='expenses-amount' />
                     </div>
                    </div>
 
                     {/* Select Category */}
                     <div  className='flex flex-col gap-3'>
                       <Label htmlFor='budget-category'>Budget Category</Label>
-                        <select ref={expenseCategory}>
+                        <select className='flex items-center justify-between w-full h-10 px-3 py-2 text-sm border rounded-md border-input bg-background ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50' ref={expenseCategory}>
                               {
-                               budgetArray && budgetArray.map((datum:any, i:number) => <option key={i} value={datum.budgetName}>{datum.budgetName}</option> )
+                                budgetArray && budgetArray.map((datum:any, i:number) => <option key={i} value={datum.budgetName}>{datum.budgetName}</option> )
                               }
                         </select>
                     </div>
@@ -65,6 +56,3 @@ function NewExpenses({expenseName, expenseAmount, expenseCategory, handleExpense
     </>
   )
 }
-
-
-export default NewExpenses;
