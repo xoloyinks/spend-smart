@@ -20,7 +20,7 @@ interface Expenses {
 }
 
 
-export default function NewExpenses({expenseName, expenseAmount, expenseCategory, handleExpenses, budgetArray} : Expenses){
+function NewExpenses({expenseName, expenseAmount, expenseCategory, handleExpenses, budgetArray} : Expenses){
   return (
     <>
         <section>
@@ -67,3 +67,4 @@ export default function NewExpenses({expenseName, expenseAmount, expenseCategory
 }
 
 
+export default NewExpenses;
