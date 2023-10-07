@@ -13,8 +13,8 @@ export default function ExistingBudget() {
         <section className='my-5'>
             <h1 className='text-2xl font-bold'>Existing Budgets</h1>
 
-            <div className='rounded-xl my-3 text-sm py-3 px-5 border-4 border-blue-500/50 backdrop-blur-lg bg-blue-950/25 sm:w-[32%] '>
-        <ToastContainer className='z-50' />
+            <div className='rounded-xl my-3 text-sm py-3 px-5 shadow-sm shadow-slate-500 bordedr-4 border-blue-5d00/50 backdrop-blur-lg bg-blue-950/25 sm:w-[32%] '>
+                <ToastContainer className='z-50' />
 
                 <div className='flex justify-between font-semibold '>
                     <span className='text-md'>Groceries</span>

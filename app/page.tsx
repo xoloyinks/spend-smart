@@ -44,7 +44,7 @@ export default function Home() {
           <span className='text-4xl'><FaPiggyBank /></span>
           <span className='logo' >SpendSmart</span>
         </nav>
-        <section className='w-screen relative h-screen overflow-x-hidden'>
+        <section className='relative w-screen h-screen overflow-x-hidden'>
           
             <div className='fixed rounded-lg bg-blue-500/50 h-[200px] w-[200px] top-[50%] left-[50%]'></div>
             <div className='fixed hidden dark:block rounded-lg bg-red-300/25 h-[200px] w-[200px] top-[20%] left-[10%]'></div>
@@ -55,7 +55,7 @@ export default function Home() {
               
               
               {/* Create and Add Budget */}
-              <div className='flex flex-col sm:justify-between gap-5 sm:flex sm:flex-row mt-32'>
+              <div className='flex flex-col gap-5 mt-32 sm:justify-between sm:flex sm:flex-row'>
                 <div className='w-full sm:w-[45%]'>
                   <CreatBudget />
                 </div>
@@ -64,7 +64,6 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Existing Budget */}
               <ExistingBudget />
               <RecentExpenses />
             </div>
