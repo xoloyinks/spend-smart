@@ -22,7 +22,7 @@ import {
 
 
 
-export default function NewExpenses() {
+export default function NewExpenses({expenseName, expenseAmount, expenseCategory, handleExpenses, budgetArray}: {expenseName: any, expenseAmount: any, expenseCategory:any, handleExpenses: any, budgetArray:any}) {
   return (
     <>
         <section>
@@ -31,36 +31,30 @@ export default function NewExpenses() {
                     <CardTitle>Add New Expenses</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <form action="" className='flex flex-col gap-5'> 
+                  <form onSubmit={handleExpenses} action="" className='flex flex-col gap-5'> 
 
                    <div className='flex flex-col gap-5 sm:flex-row sm:justify-between'>
                      {/* Expenses name */}
                      <div className='flex flex-col gap-3 sm:w-[49%]'>
                       <Label htmlFor='expenses-name'>Expenses Name</Label>
-                      <Input placeholder='e.g. Coffee' type='text' id='expenses-name' />
+                      <Input ref={expenseName} placeholder='e.g. Coffee' type='text' id='expenses-name' />
                     </div>
 
                     {/* Expenses amount */}
                     <div  className='flex flex-col gap-3 sm:w-[49%]'>
                       <Label htmlFor='expenses-amount'>Amount</Label>
-                      <Input placeholder='$30' type='text' id='expenses-amount' />
+                      <Input ref={expenseAmount} placeholder='$30' type='number' id='expenses-amount' />
                     </div>
                    </div>
 
                     {/* Select Category */}
                     <div  className='flex flex-col gap-3'>
                       <Label htmlFor='budget-category'>Budget Category</Label>
-                        <Select>
-                            <SelectTrigger className="w-full">
-                                <SelectValue placeholder="Select Category" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="light">Light</SelectItem>
-                                <SelectItem value="dark">Dark</SelectItem>
-                                <SelectItem value="system">System</SelectItem>
-                            </SelectContent>
-                        </Select>
-
+                        <select ref={expenseCategory}>
+                              {
+                               budgetArray && budgetArray.map((datum:any, i:number) => <option key={i} value={datum.budgetName}>{datum.budgetName}</option> )
+                              }
+                        </select>
                     </div>
 
                     <Button className='w-fit dark:bg-green-700 dark:text-white'>

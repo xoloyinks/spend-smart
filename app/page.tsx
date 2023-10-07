@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTheme } from 'next-themes';
 import {MdDarkMode, MdLightMode} from "react-icons/md"
 import {FaPiggyBank} from "react-icons/fa"
@@ -9,6 +9,7 @@ import CreatBudget from './components/createBudget/page';
 import NewExpenses from './components/addExpenses/page';
 import ExistingBudget from './components/exisitingBudgets/page';
 import RecentExpenses from './components/recentExpenses/page';
+import Footer from './components/footer/page';
 
 const ThemeSwitcher = () => {
   const [mounted, setMounted] = useState(false);
@@ -33,7 +34,32 @@ const ThemeSwitcher = () => {
   );
 };
 
+
+
 export default function Home() {
+  const [budget, setBudget] = useState<any | null>("");
+  const [expense, setExpense] = useState<any | null>(null);
+  const [budgetArray, setBudgetArray] = useState<any | null>([]);
+  const [expensesArray, setExpensesArray] = useState<any | null>([]);
+  const budgetName = useRef<HTMLInputElement>(null);
+  const budgetAmount = useRef<HTMLInputElement>(null);
+
+  const expenseName = useRef<HTMLInputElement>(null);
+  const expenseAmount = useRef<HTMLInputElement>(null);
+  const expenseCategory = useRef <HTMLInputElement>(null);
+
+  const handleBudget = (e : any) => {
+    e.preventDefault();
+    setBudgetArray([...budgetArray,{ budgetName: budgetName.current?.value, budgetAmount: budgetAmount.current?.value }]);
+  }
+
+  const handleExpenses = (e: any) => {
+    const expenseTimeStamp = new Date();
+    const expenseTime = expenseTimeStamp.toDateString();
+    console.log(expenseTime)
+    e.preventDefault();
+    setExpensesArray([...expensesArray, { expenseName: expenseName.current?.value, expenseAmount: expenseAmount.current?.value, expenseCategory: expenseCategory.current?.value, expenseTime: expenseTime }]);
+  }
   return (
     <>
         {/* Theme Switcher */}
@@ -56,16 +82,19 @@ export default function Home() {
               
               {/* Create and Add Budget */}
               <div className='flex flex-col gap-5 mt-32 sm:justify-between sm:flex sm:flex-row'>
+
                 <div className='w-full sm:w-[45%]'>
-                  <CreatBudget />
+                  <CreatBudget handleBudget={handleBudget} budgetName={budgetName} budgetAmount={budgetAmount} />
                 </div>
                 <div className='w-full sm:w-[45%]'>
-                  <NewExpenses />
+                  <NewExpenses budgetArray={budgetArray} handleExpenses={handleExpenses} expenseName={expenseName} expenseAmount={expenseAmount} expenseCategory={expenseCategory} />
                 </div>
+                
               </div>
 
-              <ExistingBudget />
-              <RecentExpenses />
+              <ExistingBudget budgetArray={budgetArray} />
+              <RecentExpenses expensesArray={expensesArray} />
+              <Footer />
             </div>
         </section>
     </>
