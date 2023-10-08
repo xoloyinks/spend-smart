@@ -45,3 +45,12 @@ export function RecentExpenses({expensesArray}) {
     </>
   )
 }
+
+
+export default function Check1(){
+  return(
+    <>
+
+    </>
+  )
+}

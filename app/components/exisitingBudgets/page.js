@@ -64,6 +64,13 @@ export function ExistingBudget({budgetArray}) {
 }
 
 
+export default function Check2(){
+    return(
+      <>
+  
+      </>
+    )
+  }
 
 
 

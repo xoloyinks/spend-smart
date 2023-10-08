@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/card"
 
 
-export default function CreatBudget({handleBudget, budgetName, budgetAmount} ){  
+export function CreatBudget({handleBudget, budgetName, budgetAmount} ){  
   return (
     <>
         <section>
@@ -42,6 +42,15 @@ export default function CreatBudget({handleBudget, budgetName, budgetAmount} ){
                 </CardContent>
             </Card>
         </section>
+    </>
+  )
+}
+
+
+export default function Check4(){
+  return(
+    <>
+
     </>
   )
 }

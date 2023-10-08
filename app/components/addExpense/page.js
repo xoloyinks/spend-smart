@@ -58,3 +58,11 @@ export const NewExpense = ({expenseName, expenseAmount, expenseCategory, handleE
     </>
   )
 }
+
+export default function Check(){
+  return(
+    <>
+
+    </>
+  )
+}
