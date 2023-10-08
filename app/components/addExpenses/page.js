@@ -13,7 +13,7 @@ import {
 
 
 
-export default function NewExpenses ({expenseName, expenseAmount, expenseCategory, handleExpenses, budgetArray}){
+export default function NewExpenses({expenseName, expenseAmount, expenseCategory, handleExpenses, budgetArray}){
   return (
     <>
         <section>
