@@ -45,9 +45,9 @@ export default function Home() {
   const budgetName = useRef<HTMLInputElement>(null);
   const budgetAmount = useRef<HTMLInputElement>(null);
 
-  const expenseName = useRef<HTMLInputElement>(null);
-  const expenseAmount = useRef<any | null>(null);
-  const expenseCategory = useRef <HTMLInputElement>(null);
+  const expenseName = useRef<HTMLInputElement>();
+  const expenseAmount = useRef<number | null>(null);
+  const expenseCategory = useRef<HTMLInputElement | null>(null);
 
 
   const handleBudget = (e : any) => {
@@ -57,16 +57,15 @@ export default function Home() {
     setExpense([...expense, 0]);
   }
 
-  const handleExpenses = (e: any) => {
+  const handleExpenses = (e: any) =>  {
     const expenseTimeStamp = new Date();
     const expenseTime = expenseTimeStamp.toDateString();
     e.preventDefault();
 
     budgetArray.map((datum:any) => {
-      if(datum.budgetName === expenseCategory.current?.value){
+      if(datum.budgetName === expenseCategory.current){
         let id = datum.budgetId;
-        datum.amountSpent = expense[id] + parseInt(expenseAmount.current?.value);
-
+        datum.amountSpent = expense[id] + expenseAmount.current;
         const expenses = [...expense];
         expenses[id] = datum.amountSpent;
         setExpense(expenses);
@@ -75,7 +74,7 @@ export default function Home() {
     })
 
 
-    setExpensesArray([...expensesArray, { expenseName: expenseName.current?.value, expenseAmount: expenseAmount.current?.value, expenseCategory: expenseCategory.current?.value, expenseTime: expenseTime }]);
+    setExpensesArray([...expensesArray, { expenseName: expenseName.current?.value || '', expenseAmount: expenseAmount.current || 0, expenseCategory: expenseCategory.current?.value || '', expenseTime: expenseTime }]);
   }
   return (
     <>
