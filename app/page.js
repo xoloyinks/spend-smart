@@ -42,12 +42,12 @@ export default function Home() {
   const [budgetId, setBudgetId] = useState(0);
   const [budgetArray, setBudgetArray] = useState([]);
   const [expensesArray, setExpensesArray] = useState([]);
-  const budgetName = useRef();
+  const budgetName = useRef("");
   const budgetAmount = useRef();
 
-  const expenseName = useRef();
+  const expenseName = useRef("");
   const expenseAmount = useRef();
-  const expenseCategory = useRef();
+  const expenseCategory = useRef("");
 
 
   const handleBudget = (e) => {
@@ -101,9 +101,9 @@ export default function Home() {
                 <div className='w-full sm:w-[45%]'>
                   <CreatBudget handleBudget={handleBudget} budgetName={budgetName} budgetAmount={budgetAmount} />
                 </div>
-                {/* <div className='w-full sm:w-[45%]'>
+                <div className='w-full sm:w-[45%]'>
                   <NewExpenses budgetArray={budgetArray} handleExpenses={handleExpenses} expenseName={expenseName} expenseAmount={expenseAmount} expenseCategory={expenseCategory} />
-                </div> */}
+                </div>
                 
               </div>
 

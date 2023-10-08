@@ -13,7 +13,7 @@ import {
 
 
 
-export default function NewExpenses({expenseName, expenseAmount, expenseCategory, handleExpenses, budgetArray}){
+export const NewExpense = ({expenseName, expenseAmount, expenseCategory, handleExpenses, budgetArray}) => {
   return (
     <>
         <section>
@@ -58,4 +58,3 @@ export default function NewExpenses({expenseName, expenseAmount, expenseCategory
     </>
   )
 }
-
