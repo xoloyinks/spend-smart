@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function RecentExpenses({expensesArray}) {
+export default function RecentExpenses({expensesArray}) {
 
   function formatCurrency(number, locale = 'en-US', currency = 'USD') {
     return new Intl.NumberFormat(locale, {
@@ -42,15 +42,6 @@ export function RecentExpenses({expensesArray}) {
             }
         </div>
         </section>
-    </>
-  )
-}
-
-
-export default function Check1(){
-  return(
-    <>
-
     </>
   )
 }

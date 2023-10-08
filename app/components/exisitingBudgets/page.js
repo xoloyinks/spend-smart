@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 const tryToast = () => toast("Button clicked mumu!");
 
 
-export function ExistingBudget({budgetArray}) {
+export default function ExistingBudget({budgetArray}) {
 
     function formatCurrency(number, locale = 'en-US', currency = 'USD') {
         return new Intl.NumberFormat(locale, {
@@ -64,13 +64,6 @@ export function ExistingBudget({budgetArray}) {
 }
 
 
-export default function Check2(){
-    return(
-      <>
-  
-      </>
-    )
-  }
 
 
 
