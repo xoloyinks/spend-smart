@@ -36,36 +36,36 @@ const ThemeSwitcher = () => {
 
 
 export default function Home() {
-  const [budget, setBudget] = useState<any | null>("");
-  const [expense, setExpense] = useState<any | null>([]);
-  const [amountSpent, setAmountSpent] =  useState<any | null>(0);
-  const [budgetId, setBudgetId] = useState<any | null>(0);
-  const [budgetArray, setBudgetArray] = useState<any | null>([]);
-  const [expensesArray, setExpensesArray] = useState<any | null>([]);
-  const budgetName = useRef<HTMLInputElement>(null);
-  const budgetAmount = useRef<HTMLInputElement>(null);
+  const [budget, setBudget] = useState("");
+  const [expense, setExpense] = useState([]);
+  const [amountSpent, setAmountSpent] =  useState(0);
+  const [budgetId, setBudgetId] = useState(0);
+  const [budgetArray, setBudgetArray] = useState([]);
+  const [expensesArray, setExpensesArray] = useState([]);
+  const budgetName = useRef();
+  const budgetAmount = useRef();
 
-  const expenseName = useRef<HTMLInputElement>();
-  const expenseAmount = useRef<number | null>(null);
-  const expenseCategory = useRef<HTMLInputElement | null>(null);
+  const expenseName = useRef();
+  const expenseAmount = useRef();
+  const expenseCategory = useRef();
 
 
-  const handleBudget = (e : any) => {
+  const handleBudget = (e) => {
     e.preventDefault();
     setBudgetId(budgetId + 1);
     setBudgetArray([...budgetArray,{ budgetName: budgetName.current?.value, budgetAmount: budgetAmount.current?.value, budgetId: budgetId, amountSpent: amountSpent, }]);
     setExpense([...expense, 0]);
   }
 
-  const handleExpenses = (e: any) =>  {
+  const handleExpenses = (e) =>  {
     const expenseTimeStamp = new Date();
     const expenseTime = expenseTimeStamp.toDateString();
     e.preventDefault();
 
-    budgetArray.map((datum:any) => {
-      if(datum.budgetName === expenseCategory.current){
+    budgetArray.map((datum) => {
+      if(datum.budgetName === expenseCategory.current?.value){
         let id = datum.budgetId;
-        datum.amountSpent = expense[id] + expenseAmount.current;
+        datum.amountSpent = expense[id] + parseInt(expenseAmount.current?.value);
         const expenses = [...expense];
         expenses[id] = datum.amountSpent;
         setExpense(expenses);
@@ -74,7 +74,7 @@ export default function Home() {
     })
 
 
-    setExpensesArray([...expensesArray, { expenseName: expenseName.current?.value || '', expenseAmount: expenseAmount.current || 0, expenseCategory: expenseCategory.current?.value || '', expenseTime: expenseTime }]);
+    setExpensesArray([...expensesArray, { expenseName: expenseName.current?.value, expenseAmount: expenseAmount.current?.value, expenseCategory: expenseCategory.current?.value, expenseTime: expenseTime }]);
   }
   return (
     <>

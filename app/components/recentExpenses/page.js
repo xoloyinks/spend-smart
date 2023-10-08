@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function RecentExpenses({expensesArray} : {expensesArray: any}) {
+export default function RecentExpenses({expensesArray}) {
 
-  function formatCurrency(number : number, locale = 'en-US', currency = 'USD') {
+  function formatCurrency(number, locale = 'en-US', currency = 'USD') {
     return new Intl.NumberFormat(locale, {
       style: 'currency',
       currency: currency
@@ -26,7 +26,7 @@ export default function RecentExpenses({expensesArray} : {expensesArray: any}) {
 
 
             {
-              expensesArray && expensesArray.map((datum: any, i: number) => {
+              expensesArray && expensesArray.map((datum, i) => {
                 return(
                   <>
                     <div key={i} className='flex  w-[1000px] py-3 text-md'>

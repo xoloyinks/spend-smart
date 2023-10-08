@@ -8,9 +8,9 @@ import { Button } from '@/components/ui/button'
 const tryToast = () => toast("Button clicked mumu!");
 
 
-export default function ExistingBudget({budgetArray} : {budgetArray: any}) {
+export default function ExistingBudget({budgetArray}) {
 
-    function formatCurrency(number : number, locale = 'en-US', currency = 'USD') {
+    function formatCurrency(number, locale = 'en-US', currency = 'USD') {
         return new Intl.NumberFormat(locale, {
           style: 'currency',
           currency: currency
@@ -28,7 +28,7 @@ export default function ExistingBudget({budgetArray} : {budgetArray: any}) {
 
            <div className='gap-5 sm:flex-wrap sm:flex'>
                 {
-                    budgetArray.map((datum : any, i : any) => {
+                    budgetArray.map((datum, i) => {
                         let budgeted = formatCurrency(datum.budgetAmount);
                         let spent = formatCurrency(datum.amountSpent);
                         let remaining = datum.budgetAmount - datum.amountSpent;

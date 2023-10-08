@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/card"
 
 
-export default function CreatBudget({handleBudget, budgetName, budgetAmount} : {handleBudget: any, budgetName: any, budgetAmount: any} ){
+export default function CreatBudget({handleBudget, budgetName, budgetAmount} ){
 
 
   
