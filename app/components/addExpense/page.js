@@ -1,16 +1,26 @@
-// "use client"
+"use client"
 
-// import React, { FormEvent } from 'react'
-// import { Input } from '@/components/ui/input'
-// import { Label } from "@/components/ui/label"
-// import { Button } from '@/components/ui/button'
-// import {
-//   Card,
-//   CardContent,
-//   CardHeader,
-//   CardTitle,
-// } from "@/components/ui/card"
+import React, { FormEvent } from 'react'
+import { Input } from '@/components/ui/input'
+import { Label } from "@/components/ui/label"
+import { Button } from '@/components/ui/button'
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 
+
+export default function Kola(){
+  return(
+    <>
+      <section>
+          Kolawole
+      </section>
+    </>
+  ) 
+}
 
 
 // export default function NewExpenses({expenseName, expenseAmount, expenseCategory, handleExpenses, budgetArray}){
