@@ -5,7 +5,7 @@ import { useTheme } from 'next-themes';
 import {MdDarkMode, MdLightMode} from "react-icons/md"
 import {FaPiggyBank} from "react-icons/fa"
 import CreatBudget from './components/createBudget/page';
-import NewExpenses from './components/addExpenses/page';
+import NewExpenses from './components/addExpense/page';
 import ExistingBudget from './components/exisitingBudgets/page';
 import RecentExpenses from './components/recentExpenses/page';
 import Footer from './components/footer/page';
@@ -101,9 +101,9 @@ export default function Home() {
                 <div className='w-full sm:w-[45%]'>
                   <CreatBudget handleBudget={handleBudget} budgetName={budgetName} budgetAmount={budgetAmount} />
                 </div>
-                <div className='w-full sm:w-[45%]'>
+                {/* <div className='w-full sm:w-[45%]'>
                   <NewExpenses budgetArray={budgetArray} handleExpenses={handleExpenses} expenseName={expenseName} expenseAmount={expenseAmount} expenseCategory={expenseCategory} />
-                </div>
+                </div> */}
                 
               </div>
 
