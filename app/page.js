@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useTheme } from 'next-themes';
+import { ToastContainer, toast } from 'react-toastify';
 import {MdDarkMode, MdLightMode} from "react-icons/md"
 import {FaPiggyBank} from "react-icons/fa"
 import CreatBudget from './components/createBudget/page';
@@ -55,12 +56,14 @@ export default function Home() {
     setBudgetId(budgetId + 1);
     setBudgetArray([...budgetArray,{ budgetName: budgetName.current?.value, budgetAmount: budgetAmount.current?.value, budgetId: budgetId, amountSpent: amountSpent, }]);
     setExpense([...expense, 0]);
+    toast("Budget Created Successfully ✅")
   }
 
   const handleExpenses = (e) =>  {
     const expenseTimeStamp = new Date();
     const expenseTime = expenseTimeStamp.toDateString();
     e.preventDefault();
+    toast("Epense Added ✅")
 
     budgetArray.map((datum) => {
       if(datum.budgetName === expenseCategory.current?.value){
@@ -69,8 +72,9 @@ export default function Home() {
         const expenses = [...expense];
         expenses[id] = datum.amountSpent;
         setExpense(expenses);
-        
       }
+
+    
     })
 
 
@@ -94,6 +98,7 @@ export default function Home() {
 
             {/* Content container */}
             <div className='fixed overflow-y-scroll top-0 z-10 w-full h-full backdrop-blur-3xl px-[20px] sm:px-[100px]'>
+            <ToastContainer className='z-50 mt-20' />
               
               
               {/* Create and Add Budget */}

@@ -11,7 +11,7 @@ export default function RecentExpenses({expensesArray}) {
 
   return (
     <>
-        <section>
+        <section className='mb-16'>
         <h1 className='text-2xl font-bold'>Recent Expenses</h1>
 
         <div className='w-full py-3 overflow-x-scroll sm:overflow-hidden'>
