@@ -1,7 +1,6 @@
 "use client"
 import React, { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { Progress } from "@/components/ui/progress"
 import { Button } from '@/components/ui/button'
 
@@ -14,7 +13,7 @@ interface Budget {
     amountSpent: number;
   }
 
-export default function ExistingBudget(props : any) {
+export default function ExistingBudget(props: any) {
 
     function formatCurrency(number : number, locale = 'en-US', currency = 'USD') {
         return new Intl.NumberFormat(locale, {
@@ -27,7 +26,7 @@ export default function ExistingBudget(props : any) {
     <>
         <section className='my-5'>
             {
-                props.budgetArray.length === 0 ? "" : <h1 className='text-2xl font-bold'>Existing Budgets</h1>
+               props.budgetArray &&  props.budgetArray.length === 0 ? "" : <h1 className='text-2xl font-bold'>Existing Budgets</h1>
             }
 
             <ToastContainer className='z-50 mt-20' />
