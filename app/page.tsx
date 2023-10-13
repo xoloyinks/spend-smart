@@ -35,31 +35,47 @@ const ThemeSwitcher = () => {
 };
 
 
+interface Budget {
+  budgetName: string;
+  budgetAmount: string;
+  budgetId: number;
+  amountSpent: number;
+}
 
-export default function Home() {
-  const [budget, setBudget] = useState("");
-  const [expense, setExpense] = useState([]);
-  const [amountSpent, setAmountSpent] =  useState(0);
-  const [budgetId, setBudgetId] = useState(0);
-  const [budgetArray, setBudgetArray] = useState([]);
-  const [expensesArray, setExpensesArray] = useState([]);
-  const budgetName = useRef("");
-  const budgetAmount = useRef();
-
-  const expenseName = useRef("");
-  const expenseAmount = useRef();
-  const expenseCategory = useRef("");
+interface Expense {
+  expenseName: string;
+  expenseAmount: string;
+  expenseCategory: string;
+  expenseTime: string;
+}
 
 
-  const handleBudget = (e) => {
+const Home : React.FC = () => {
+  const [expense, setExpense] = useState<number[]>([]);
+  const [budgetId, setBudgetId] = useState<number>(0);
+  const [budgetArray, setBudgetArray] = useState<Budget[]>([]);
+  const [expensesArray, setExpensesArray] = useState<Expense[]>([]);
+  
+  var amountSpent = 0;
+
+  const budgetName = useRef<HTMLInputElement>(null);
+  const budgetAmount = useRef<HTMLInputElement>(null);
+
+  const expenseName = useRef<HTMLInputElement>(null);
+  const expenseAmount = useRef<HTMLInputElement>(null);
+  const expenseCategory = useRef<HTMLInputElement>(null);
+
+
+
+  const handleBudget  = (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setBudgetId(budgetId + 1);
-    setBudgetArray([...budgetArray,{ budgetName: budgetName.current?.value, budgetAmount: budgetAmount.current?.value, budgetId: budgetId, amountSpent: amountSpent, }]);
+    setBudgetArray([...budgetArray,{ budgetName: budgetName.current?.value || '', budgetAmount: budgetAmount.current?.value || '', budgetId: budgetId, amountSpent: amountSpent, }]);
     setExpense([...expense, 0]);
     toast("Budget Created Successfully ✅")
   }
 
-  const handleExpenses = (e) =>  {
+  const handleExpenses = (e : React.FormEvent<HTMLFormElement>) =>  {
     const expenseTimeStamp = new Date();
     const expenseTime = expenseTimeStamp.toDateString();
     e.preventDefault();
@@ -68,7 +84,7 @@ export default function Home() {
     budgetArray.map((datum) => {
       if(datum.budgetName === expenseCategory.current?.value){
         let id = datum.budgetId;
-        datum.amountSpent = expense[id] + parseInt(expenseAmount.current?.value);
+        datum.amountSpent = expense[id] + parseInt(expenseAmount.current?.value || '0');
         const expenses = [...expense];
         expenses[id] = datum.amountSpent;
         setExpense(expenses);
@@ -78,7 +94,7 @@ export default function Home() {
     })
 
 
-    setExpensesArray([...expensesArray, { expenseName: expenseName.current?.value, expenseAmount: expenseAmount.current?.value, expenseCategory: expenseCategory.current?.value, expenseTime: expenseTime }]);
+    setExpensesArray([...expensesArray, { expenseName: expenseName.current?.value || '', expenseAmount: expenseAmount.current?.value || '', expenseCategory: expenseCategory.current?.value || '', expenseTime: expenseTime }]);
   }
   return (
     <>
@@ -119,4 +135,7 @@ export default function Home() {
         </section>
     </>
   )
-}
+};
+
+
+export default Home;

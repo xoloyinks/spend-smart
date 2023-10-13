@@ -1,8 +1,16 @@
 import React from 'react'
 
-export default function RecentExpenses({expensesArray}) {
 
-  function formatCurrency(number, locale = 'en-US', currency = 'USD') {
+interface Expense {
+  expenseName: string;
+  expenseAmount: string;
+  expenseCategory: string;
+  expenseTime: string;
+}
+
+export default function RecentExpenses(props : any) {
+
+  function formatCurrency(number : number, locale = 'en-US', currency = 'USD') {
     return new Intl.NumberFormat(locale, {
       style: 'currency',
       currency: currency
@@ -26,12 +34,12 @@ export default function RecentExpenses({expensesArray}) {
 
 
             {
-              expensesArray && expensesArray.map((datum, i) => {
+              props.expensesArray && props.expensesArray.map((datum : Expense , i : number) => {
                 return(
                   <>
                     <div key={i} className='flex  w-[1000px] py-3 text-md'>
                       <span className='w-[50%] text-gray-400'>{datum.expenseName}</span>
-                      <span className='w-[50%] text-gray-400 '>{formatCurrency(datum.expenseAmount)}</span>
+                      <span className='w-[50%] text-gray-400 '>{formatCurrency(parseInt(datum.expenseAmount))}</span>
                       <span className='w-[50%] text-gray-400 '>{datum.expenseTime}</span>
                       <span className='w-[50%] text-center text-gray-400 rounded-full bg-slate-800'>{datum.expenseCategory}</span>
                       <button className='w-[50%] text-gray-400 '>remove</button>

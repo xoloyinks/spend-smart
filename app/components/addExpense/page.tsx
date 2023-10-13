@@ -11,9 +11,14 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
+interface Budget {
+  budgetName: string;
+  budgetAmount: string;
+  budgetId: number;
+  amountSpent: number;
+}
 
-
-export default function NewExpenses({expenseName, expenseAmount, expenseCategory, handleExpenses, budgetArray}){
+export default function NewExpenses(props : any){
   return (
     <>
         <section>
@@ -22,28 +27,28 @@ export default function NewExpenses({expenseName, expenseAmount, expenseCategory
                     <CardTitle>Add New Expenses</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <form onSubmit={handleExpenses} action="" className='flex flex-col gap-5'> 
+                  <form onSubmit={props.handleExpenses} action="" className='flex flex-col gap-5'> 
 
                    <div className='flex flex-col gap-5 sm:flex-row sm:justify-between'>
                      {/* Expenses name */}
                      <div className='flex flex-col gap-3 sm:w-[49%]'>
                       <Label htmlFor='expenses-name'>Expenses Name</Label>
-                      <Input ref={expenseName} placeholder='e.g. Coffee' type='text' id='expenses-name' />
+                      <Input ref={props.expenseName} placeholder='e.g. Coffee' type='text' id='expenses-name' />
                     </div>
 
                     {/* Expenses amount */}
                     <div  className='flex flex-col gap-3 sm:w-[49%]'>
                       <Label htmlFor='expenses-amount'>Amount</Label>
-                      <Input ref={expenseAmount} placeholder='-----' type='number' id='expenses-amount' />
+                      <Input ref={props.expenseAmount} placeholder='-----' type='number' id='expenses-amount' />
                     </div>
                    </div>
 
                     {/* Select Category */}
                     <div  className='flex flex-col gap-3'>
                       <Label htmlFor='budget-category'>Budget Category</Label>
-                        <select className='flex items-center justify-between w-full h-10 px-3 py-2 text-sm border rounded-md border-input bg-background ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50' ref={expenseCategory}>
+                        <select className='flex items-center justify-between w-full h-10 px-3 py-2 text-sm border rounded-md border-input bg-background ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50' ref={props.expenseCategory}>
                               {
-                                budgetArray && budgetArray.map((datum, i) => <option key={i} value={datum.budgetName}>{datum.budgetName}</option> )
+                                props.budgetArray && props.budgetArray.map((datum : Budget , i : number) => <option key={i} value={datum.budgetName}>{datum.budgetName}</option> )
                               }
                         </select>
                     </div>

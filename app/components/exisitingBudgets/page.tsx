@@ -7,10 +7,16 @@ import { Button } from '@/components/ui/button'
 
 const tryToast = () => toast("Button clicked mumu!");
 
+interface Budget {
+    budgetName: string;
+    budgetAmount: string;
+    budgetId: number;
+    amountSpent: number;
+  }
 
-export default function ExistingBudget({budgetArray}) {
+export default function ExistingBudget(props : any) {
 
-    function formatCurrency(number, locale = 'en-US', currency = 'USD') {
+    function formatCurrency(number : number, locale = 'en-US', currency = 'USD') {
         return new Intl.NumberFormat(locale, {
           style: 'currency',
           currency: currency
@@ -21,19 +27,19 @@ export default function ExistingBudget({budgetArray}) {
     <>
         <section className='my-5'>
             {
-                budgetArray.length === 0 ? "" : <h1 className='text-2xl font-bold'>Existing Budgets</h1>
+                props.budgetArray.length === 0 ? "" : <h1 className='text-2xl font-bold'>Existing Budgets</h1>
             }
 
             <ToastContainer className='z-50 mt-20' />
 
            <div className='gap-5 sm:flex-wrap sm:flex'>
                 {
-                    budgetArray.map((datum, i) => {
-                        let budgeted = formatCurrency(datum.budgetAmount);
+                    props.budgetArray.map((datum : Budget, i : number) => {
+                        let budgeted = formatCurrency(parseInt(datum.budgetAmount));
                         let spent = formatCurrency(datum.amountSpent);
-                        let remaining = datum.budgetAmount - datum.amountSpent;
+                        let remaining = parseInt(datum.budgetAmount) - datum.amountSpent;
 
-                        let percentage = (100 * datum.amountSpent)/datum.budgetAmount;
+                        let percentage = (100 * datum.amountSpent)/parseInt(datum.budgetAmount);
                         return(
                             <>
                                 <div key={i}  className='rounded-xl my-3 text-sm py-3 px-5 shadow-sm shadow-slate-500 bordedr-4 border-blue-5d00/50 backdrop-blur-lg bg-blue-950/25 sm:w-[32%] '>
