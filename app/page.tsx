@@ -80,7 +80,7 @@ const Home : React.FC = () => {
     const expenseTimeStamp = new Date();
     const expenseTime = expenseTimeStamp.toDateString();
     e.preventDefault();
-    toast("Epense Added ✅")
+    toast("Epense Added ✅");
 
     budgetArray.map((datum) => {
       if(datum.budgetName === expenseCategory.current?.value){
@@ -101,25 +101,29 @@ const Home : React.FC = () => {
     <>
         {/* Theme Switcher */}
         <ThemeSwitcher />
-
+        
         {/* NAV */}
-        <nav className='w-full fixed font-bold text-green-700 dark:text-green-500 px-[20px] sm:px-[100px] backdrop-blur-lg py-8 flex text-xl items-center gap-3 z-30 '>
+        <nav className='w-full fixed font-bold text-green-700 dark:text-green-500 px-[20px] sm:px-[100px] backdrop-blur-lg dark:bg-black/50 bg-white/25 py-8 flex text-xl items-center gap-3 z-30 '>
           <span className='text-4xl'><FaPiggyBank /></span>
           <span className='logo' >SpendSmart</span>
         </nav>
         <section className='relative w-screen h-screen overflow-x-hidden'>
-          
-            <div className='fixed rounded-lg bg-blue-500/50 h-[200px] w-[200px] top-[50%] left-[50%]'></div>
+
+            <div className='ab'>
+              {/* <ToastContainer className='absolute z-50 mt-32 bottom-52' /> */}
+            </div>
+
+            <div className='fixed rounded-lg bg-blue-950 opacity-50 dark:bg-black/25 dark:h-[200px] h-[300px] w-[300px] dark:w-[200px] top-[50%] left-[40%]'></div>
             <div className='fixed hidden dark:block rounded-lg bg-red-300/25 h-[200px] w-[200px] top-[20%] left-[10%]'></div>
             <div className='fixed hidden dark:block rounded-lg bg-blue-900/25 h-[400px] w-[700px] -top-[20%] left-[50%]'></div>
 
             {/* Content container */}
-            <div className='fixed overflow-y-scroll top-0 z-10 w-full h-full backdrop-blur-3xl px-[20px] sm:px-[100px]'>
-            <ToastContainer className='z-50 mt-20' />
+            <div className='fixed overflow-y-scroll top-0 z-10 w-full h-full backdrop-blur-3xl px-[20px] sm:px-[100px] bg-gray-400/20 dark:bg-transparent'>
+            
               
               
               {/* Create and Add Budget */}
-              <div className='flex flex-col gap-5 mt-32 sm:justify-between sm:flex sm:flex-row'>
+              <div className='relative flex flex-col gap-5 mt-32 sm:justify-between sm:flex sm:flex-row'>
                 <div className='w-full sm:w-[45%]'>
                   <CreatBudget handleBudget={handleBudget} budgetName={budgetName} budgetAmount={budgetAmount} />
                 </div>

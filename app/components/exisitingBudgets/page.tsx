@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { Progress } from "@/components/ui/progress"
 import { Button } from '@/components/ui/button'
 
-const tryToast = () => toast("Button clicked mumu!");
+const tryToast = () => toast("Coming soon!");
 
 interface Budget {
     budgetName: string;
@@ -24,7 +24,7 @@ export default function ExistingBudget(props: any) {
       
   return (
     <>
-        <section className='my-5'>
+        <section className='my-5 '>
             {
                props.budgetArray &&  props.budgetArray.length === 0 ? "" : <h1 className='text-2xl font-bold'>Existing Budgets</h1>
             }
@@ -41,7 +41,7 @@ export default function ExistingBudget(props: any) {
                         let percentage = (100 * datum.amountSpent)/parseInt(datum.budgetAmount);
                         return(
                             <>
-                                <div key={i}  className='rounded-xl my-3 text-sm py-3 px-5 shadow-sm shadow-slate-500 bordedr-4 border-blue-5d00/50 backdrop-blur-lg bg-blue-950/25 sm:w-[32%] '>
+                                <div key={i}  className='rounded-xl my-3 text-sm py-3 px-5 shadow-sm shadow-slate-500 bordedr-4 border-blue-5d00/50 backdrop-blur-lg bg-slate-700/75 dark:bg-blue-950/25 sm:w-[32%] '>
                                     <div className='flex justify-between font-semibold '>
                                         <span className='text-md'>{datum.budgetName}</span>
                                         <span>{budgeted} Budgeted</span>
@@ -54,7 +54,7 @@ export default function ExistingBudget(props: any) {
                                         <span>{formatCurrency(remaining)} remaining</span>
                                     </div>
                                     <div className='mt-4'>
-                                        <Button onClick={tryToast} className='flex mx-auto'>View Details</Button>
+                                        <Button onClick={tryToast} className='flex mx-auto bg-white/50'>View Details</Button>
                                     </div>
 
                                 </div>

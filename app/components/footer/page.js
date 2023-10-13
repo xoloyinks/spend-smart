@@ -7,7 +7,7 @@ export default function Footer() {
     const myDate = date.getFullYear();
   return (
     <>
-        <section className='flex items-center w-full py-10 font-semibold text-green-500'>
+        <section className='flex items-center w-full py-10 font-semibold text-green-900 dark:text-green-400'>
            <div>
            <span className='text-xl'> &copy;</span>
            <span>XOLO</span>

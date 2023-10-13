@@ -37,12 +37,12 @@ export default function RecentExpenses(props : any) {
               props.expensesArray && props.expensesArray.map((datum : Expense , i : number) => {
                 return(
                   <>
-                    <div key={i} className='flex  w-[1000px] py-3 text-md'>
-                      <span className='w-[50%] text-gray-400'>{datum.expenseName}</span>
-                      <span className='w-[50%] text-gray-400 '>{formatCurrency(parseInt(datum.expenseAmount))}</span>
-                      <span className='w-[50%] text-gray-400 '>{datum.expenseTime}</span>
-                      <span className='w-[50%] text-center text-gray-400 rounded-full bg-slate-800'>{datum.expenseCategory}</span>
-                      <button className='w-[50%] text-gray-400 '>remove</button>
+                    <div key={i} className='flex  w-[1000px] py-3 dark:text-gray-400 text-md text-black'>
+                      <span className='w-[50%]'>{datum.expenseName}</span>
+                      <span className='w-[50%] '>{formatCurrency(parseInt(datum.expenseAmount))}</span>
+                      <span className='w-[50%] '>{datum.expenseTime}</span>
+                      <span className='w-[50%] text-center text-white dark:text-gray-400 rounded-full bg-slate-800'>{datum.expenseCategory}</span>
+                      <button className='w-[50%]'>remove</button>
                     </div>
                   </>
                 )

@@ -18,7 +18,7 @@ export default function CreatBudget(props : any ){
   return (
     <>
         <section>
-            <Card className="backdrop-blur-lg bg-blue-950/25">
+            <Card className="text-white bg-slate-700/75 backdrop-blur-lg dark:bg-blue-950/25">
                 <CardHeader>
                     <CardTitle>Create Budget</CardTitle>
                 </CardHeader>
@@ -37,7 +37,7 @@ export default function CreatBudget(props : any ){
                       <Input ref={props.budgetAmount} placeholder='-----' type='number' id='budget-amount' />
                     </div>
 
-                    <Button className='w-fit dark:bg-green-700 dark:text-white'>Create Budget</Button>
+                    <Button className='bg-green-900 w-fit dark:bg-green-700 dark:text-white'>Create Budget</Button>
                   </form>
                 </CardContent>
             </Card>

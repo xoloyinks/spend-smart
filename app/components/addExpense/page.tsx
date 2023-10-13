@@ -22,7 +22,7 @@ export default function NewExpenses(props : any){
   return (
     <>
         <section>
-            <Card className="backdrop-blur-lg bg-blue-950/25">
+            <Card className="text-white backdrop-blur-lg dark:bg-blue-950/25 bg-slate-700/75">
                 <CardHeader>
                     <CardTitle>Add New Expenses</CardTitle>
                 </CardHeader>
@@ -46,14 +46,14 @@ export default function NewExpenses(props : any){
                     {/* Select Category */}
                     <div  className='flex flex-col gap-3'>
                       <Label htmlFor='budget-category'>Budget Category</Label>
-                        <select className='flex items-center justify-between w-full h-10 px-3 py-2 text-sm border rounded-md border-input bg-background ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50' ref={props.expenseCategory}>
+                        <select className='flex items-center justify-between w-full h-10 px-3 py-2 text-sm border rounded-md bg-gray-400/25 dark:bg-background border-input ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50' ref={props.expenseCategory}>
                               {
                                 props.budgetArray && props.budgetArray.map((datum : Budget , i : number) => <option key={i} value={datum.budgetName}>{datum.budgetName}</option> )
                               }
                         </select>
                     </div>
 
-                    <Button className='w-fit dark:bg-green-700 dark:text-white'>
+                    <Button className='bg-green-900 w-fit dark:bg-green-700 dark:text-white'>
                         Add Expenses
                     </Button>
                   </form>
