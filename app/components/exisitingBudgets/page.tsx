@@ -33,7 +33,7 @@ export default function ExistingBudget(props: any) {
 
            <div className='gap-5 sm:flex-wrap sm:flex'>
                 {
-                    props.budgetArray.map((datum : Budget, i : number) => {
+                   props.budgetArray &&   props.budgetArray.map((datum : Budget, i : number) => {
                         let budgeted = formatCurrency(parseInt(datum.budgetAmount));
                         let spent = formatCurrency(datum.amountSpent);
                         let remaining = parseInt(datum.budgetAmount) - datum.amountSpent;
