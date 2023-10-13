@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useTheme } from 'next-themes';
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {MdDarkMode, MdLightMode} from "react-icons/md"
 import {FaPiggyBank} from "react-icons/fa"
 import CreatBudget from './components/createBudget/page';
