@@ -18,7 +18,7 @@ export default function CreatBudget(props : any ){
   return (
     <>
         <section>
-            <Card className="text-white bg-slate-700/75 backdrop-blur-lg dark:bg-blue-950/25">
+            <Card className="text-white shadow-lg bg-slate-700/75 shadow-slate-700 backdrop-blur-lg dark:bg-blue-950/25">
                 <CardHeader>
                     <CardTitle>Create Budget</CardTitle>
                 </CardHeader>

@@ -11,6 +11,7 @@ import NewExpenses from './components/addExpense/page';
 import ExistingBudget from './components/exisitingBudgets/page';
 import RecentExpenses from './components/recentExpenses/page';
 import Footer from './components/footer/page';
+import { parse } from 'path';
 
 const ThemeSwitcher = () => {
   const [mounted, setMounted] = useState(false);
@@ -56,6 +57,7 @@ const Home : React.FC = () => {
   const [budgetId, setBudgetId] = useState<number>(0);
   const [budgetArray, setBudgetArray] = useState<Budget[]>([]);
   const [expensesArray, setExpensesArray] = useState<Expense[]>([]);
+  const [items, setItems] = useState([]);
   
   var amountSpent = 0;
 
@@ -66,36 +68,46 @@ const Home : React.FC = () => {
   const expenseAmount = useRef<HTMLInputElement>(null);
   const expenseCategory = useRef<HTMLInputElement>(null);
 
-
+  useEffect(() => {
+    localStorage.setItem('budget', JSON.stringify(budgetArray));
+  }, [budgetArray]);
 
   const handleBudget  = (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setBudgetId(budgetId + 1);
     setBudgetArray([...budgetArray,{ budgetName: budgetName.current?.value || '', budgetAmount: budgetAmount.current?.value || '', budgetId: budgetId, amountSpent: amountSpent, }]);
     setExpense([...expense, 0]);
+    console.log(budgetArray);
+
     toast("Budget Created Successfully ✅")
   }
 
+  
   const handleExpenses = (e : React.FormEvent<HTMLFormElement>) =>  {
     const expenseTimeStamp = new Date();
     const expenseTime = expenseTimeStamp.toDateString();
     e.preventDefault();
-    toast("Epense Added ✅");
 
     budgetArray.map((datum) => {
       if(datum.budgetName === expenseCategory.current?.value){
         let id = datum.budgetId;
-        datum.amountSpent = expense[id] + parseInt(expenseAmount.current?.value || '0');
-        const expenses = [...expense];
-        expenses[id] = datum.amountSpent;
-        setExpense(expenses);
+
+        let check = expense[id] + parseInt(expenseAmount.current?.value || '0');
+
+        if(check > parseInt(datum.budgetAmount)){
+          toast("Expense not within budget! ❌");
+        }else{
+          toast("Epense Added ✅");
+          datum.amountSpent = check;
+          const expenses = [...expense];
+          expenses[id] = datum.amountSpent;
+          setExpense(expenses);
+
+          setExpensesArray([...expensesArray, { expenseName: expenseName.current?.value || '', expenseAmount: expenseAmount.current?.value || '', expenseCategory: expenseCategory.current?.value || '', expenseTime: expenseTime}]);
+
+        }
       }
-
-    
     })
-
-
-    setExpensesArray([...expensesArray, { expenseName: expenseName.current?.value || '', expenseAmount: expenseAmount.current?.value || '', expenseCategory: expenseCategory.current?.value || '', expenseTime: expenseTime }]);
   }
   return (
     <>
@@ -113,7 +125,7 @@ const Home : React.FC = () => {
               {/* <ToastContainer className='absolute z-50 mt-32 bottom-52' /> */}
             </div>
 
-            <div className='fixed rounded-lg bg-blue-950 opacity-50 dark:bg-black/25 dark:h-[200px] h-[300px] w-[300px] dark:w-[200px] top-[50%] left-[40%]'></div>
+            <div className='fixed animate-pulse rounded-lg bg-blue-950 opacity-50 dark:bg-black/25 dark:h-[200px] h-[300px] w-[300px] dark:w-[200px] top-[50%] left-[40%]'></div>
             <div className='fixed hidden dark:block rounded-lg bg-red-300/25 h-[200px] w-[200px] top-[20%] left-[10%]'></div>
             <div className='fixed hidden dark:block rounded-lg bg-blue-900/25 h-[400px] w-[700px] -top-[20%] left-[50%]'></div>
 
@@ -128,13 +140,19 @@ const Home : React.FC = () => {
                   <CreatBudget handleBudget={handleBudget} budgetName={budgetName} budgetAmount={budgetAmount} />
                 </div>
                 <div className='w-full sm:w-[45%]'>
-                  <NewExpenses budgetArray={budgetArray} handleExpenses={handleExpenses} expenseName={expenseName} expenseAmount={expenseAmount} expenseCategory={expenseCategory} />
+                  {
+                    budgetArray && budgetArray.length === 0 ? " ":        <NewExpenses budgetArray={budgetArray} handleExpenses={handleExpenses} expenseName={expenseName} expenseAmount={expenseAmount} expenseCategory={expenseCategory} />
+                  }
+                  
                 </div>
                 
               </div>
-
-              <ExistingBudget budgetArray={budgetArray} />
-              <RecentExpenses expensesArray={expensesArray} />
+              {
+                budgetArray && budgetArray.length === 0 ? " ": <ExistingBudget budgetArray={budgetArray} />
+              }
+              {
+                expensesArray && expensesArray.length === 0 ? " ": <RecentExpenses expensesArray={expensesArray} />
+              }
               <Footer />
             </div>
         </section>

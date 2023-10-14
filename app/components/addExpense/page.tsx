@@ -22,7 +22,7 @@ export default function NewExpenses(props : any){
   return (
     <>
         <section>
-            <Card className="text-white backdrop-blur-lg dark:bg-blue-950/25 bg-slate-700/75">
+            <Card className="text-white shadow-lg backdrop-blur-lg dark:bg-blue-950/25 bg-slate-700/75 shadow-slate-700">
                 <CardHeader>
                     <CardTitle>Add New Expenses</CardTitle>
                 </CardHeader>

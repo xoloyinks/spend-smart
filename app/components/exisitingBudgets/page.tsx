@@ -25,10 +25,7 @@ export default function ExistingBudget(props: any) {
   return (
     <>
         <section className='my-5 '>
-            {
-               props.budgetArray &&  props.budgetArray.length === 0 ? "" : <h1 className='text-2xl font-bold'>Existing Budgets</h1>
-            }
-
+            <h1 className='text-2xl font-bold'>Existing Budgets</h1>
             <ToastContainer className='z-50 mt-20' />
 
            <div className='gap-5 sm:flex-wrap sm:flex'>
@@ -37,8 +34,14 @@ export default function ExistingBudget(props: any) {
                         let budgeted = formatCurrency(parseInt(datum.budgetAmount));
                         let spent = formatCurrency(datum.amountSpent);
                         let remaining = parseInt(datum.budgetAmount) - datum.amountSpent;
+                        let percentage;
 
-                        let percentage = (100 * datum.amountSpent)/parseInt(datum.budgetAmount);
+                        if(spent > budgeted){
+                            percentage = 100;
+                        }else{
+                            percentage = (100 * datum.amountSpent)/parseInt(datum.budgetAmount);
+                        }
+
                         return(
                             <>
                                 <div key={i}  className='rounded-xl my-3 text-sm py-3 px-5 shadow-sm shadow-slate-500 bordedr-4 border-blue-5d00/50 backdrop-blur-lg bg-slate-700/75 dark:bg-blue-950/25 sm:w-[32%] '>

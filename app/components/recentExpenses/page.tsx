@@ -24,12 +24,12 @@ export default function RecentExpenses(props : any) {
 
         <div className='w-full py-3 overflow-x-scroll sm:overflow-hidden'>
           {/* Table head */}
-            <div className='flex w-[1000px] mt-3 text-md'>
+            <div className='flex py-2 w-[1000px] mt-3 text-md border-b-4 border-gray-400'>
               <span className='w-[50%] font-semibold text-md'>Name</span>
               <span className='w-[50%] font-semibold'>Amount</span>
               <span  className='w-[50%] font-semibold'>Date</span>
               <span  className='w-[50%] font-semibold'>Budget</span>
-              <span  className='w-[50%] font-semibold'></span>
+              
             </div>
 
 
@@ -37,12 +37,11 @@ export default function RecentExpenses(props : any) {
               props.expensesArray && props.expensesArray.map((datum : Expense , i : number) => {
                 return(
                   <>
-                    <div key={i} className='flex  w-[1000px] py-3 dark:text-gray-400 text-md text-black'>
+                    <div key={i} className='flex items-center  w-[1000px] py-3 dark:text-gray-400 text-md text-black'>
                       <span className='w-[50%]'>{datum.expenseName}</span>
                       <span className='w-[50%] '>{formatCurrency(parseInt(datum.expenseAmount))}</span>
                       <span className='w-[50%] '>{datum.expenseTime}</span>
-                      <span className='w-[50%] text-center text-white dark:text-gray-400 rounded-full bg-slate-800'>{datum.expenseCategory}</span>
-                      <button className='w-[50%]'>remove</button>
+                      <span className='w-[50%] text-center text-white dark:text-gray-400 rounded-full bg-slate-800 py-3 text-[12px]'>{datum.expenseCategory}</span>
                     </div>
                   </>
                 )
